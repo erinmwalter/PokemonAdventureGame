@@ -35,7 +35,8 @@ namespace PokemonAdventure
 
         public void GamePlay()
         {
-            while (true)
+            bool goOn = true;
+            while (goOn)
             {
                 GameMenu();
                 string choice = Helper.GetInput("Enter your selection: ");
@@ -43,14 +44,31 @@ namespace PokemonAdventure
                 {
                     case "1":
                         //catch wild pokemon
+                        Trainer.CatchNewPokemon();
                         break;
                     case "2":
                         //pick pokemon to train and battle rando pokemon
+                        Console.WriteLine("Pokemon Traiing functionality comming soon");
                         break;
                     case "3":
+                        Trainer.ViewPokedex();
+                        break;
+                    case "4":
+                        //remove pokemon from pokedex
+                        Trainer.ReleasePokemon();
+                        break;
+                    case "5":
+                        //gym battle
+                        Console.WriteLine("Gym Battle Functionality Coming Soon.");
+                        break;
+                    case "6":
+                        goOn = Helper.Continue("Are you sure you want to quit?");
+                        break;
 
                 }
             }
+            Console.WriteLine("Game Ended. Returning to main menu...");
+
         }
 
         public void GameMenu()
@@ -61,6 +79,7 @@ namespace PokemonAdventure
             Console.WriteLine("3. View All Pokemon");
             Console.WriteLine("4. Release Pokemon");
             Console.WriteLine("5. Battle Next Gym Leader");
+            Console.WriteLine("6. Quit Game --Warning Save Game functionality not available yet.");
         }
 
 

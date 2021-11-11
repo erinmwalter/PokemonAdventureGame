@@ -43,25 +43,52 @@ namespace PokemonAdventure
                 return sum / Pokedex.Count;
             }
         }
-        //public Pokemon GeneratehWildPokemon()
-        //{
-        //    Pokemon wildPokemon = PokemonList.GetRandomPokemon(TrainerLevel);
-        //}
+       
 
-        public void RemovePokemon(Pokemon pokemon)
+        public void CatchNewPokemon()
         {
-            foreach(Pokemon p in Pokedex)
+            Pokemon wildPokemon = PokemonDatabase.GetPokemon(TrainerLevel);
+            Console.WriteLine($"A wild {wildPokemon.Name} appeared!");
+            Console.WriteLine(wildPokemon);
+            int choice = Helper.GetValidIntInput("Would you like to [1]Try to Catch or [2]Run Away: ", 1, 2);
+            switch (choice)
             {
-                if (p == pokemon)
-                {
-                    Pokedex.Remove(p);
-                    Console.WriteLine($"Successfully released {p.Name} to the wild");
-                    return;
-                }
+                case 1:
+                    bool Success = TryToCatch(wildPokemon);
+                    if (Success)
+                    {
+                        Console.WriteLine($"Adding {wildPokemon.Name} to Pokedex!");
+                        Pokedex.Add(wildPokemon);
+                    }
+                    break;
+                case 2:
+                    Console.WriteLine("Got away safely!");
+                    break;
+
             }
-            Console.WriteLine($"Could not locate {pokemon.Name} in Pokedex. Unable to relese.");
         }
 
+        public bool TryToCatch(Pokemon pokemon)
+        {
+            int randNumber = Helper.GenerateRandom(1, 4);
+            Helper.Pause("Press any key to throw pokeball...");
+            if(randNumber == 1)
+            {
+                Console.WriteLine($"{pokemon.Name} escaped! {pokemon.Name} has fled!");
+                return false;
+            }
+            else if (randNumber == 2)
+            {
+                Console.WriteLine($"{pokemon.Name} escaped! Try again! ");
+                return TryToCatch(pokemon);
+            }
+            else
+            {
+                Console.WriteLine($"Success! {pokemon.Name} captured!");
+                return true;
+            }
+        }
+     
         public void AddPokemon(params Pokemon[] pokemon)
         {
             foreach (Pokemon p in pokemon)
@@ -77,6 +104,16 @@ namespace PokemonAdventure
             {
                 Console.WriteLine($"{i + 1}: {Pokedex[i]}");
             }
+        }
+
+        public void ReleasePokemon()
+        {
+            ViewPokedex();
+            int choice = Helper.GetValidIntInput("Choose which pokemon to release: ", 1, Pokedex.Count);
+            Pokemon toRemove = Pokedex[choice-1];
+            Pokedex.Remove(toRemove);
+            Console.WriteLine($"Successfully released {toRemove.Name} to the wild");
+
         }
     }
 }
