@@ -12,6 +12,7 @@ namespace PokemonAdventure
             Console.WriteLine("Your adventure begins...");
             SetTrainer();
             Helper.Pause("Press any key to begin!");
+            Console.Clear();
             GamePlay();
         }
 
@@ -35,8 +36,8 @@ namespace PokemonAdventure
 
         public void GamePlay()
         {
-            bool goOn = true;
-            while (goOn)
+            bool endGame = false;
+            while (!endGame)
             {
                 GameMenu();
                 string choice = Helper.GetInput("Enter your selection: ");
@@ -62,7 +63,7 @@ namespace PokemonAdventure
                         Console.WriteLine("Gym Battle Functionality Coming Soon.");
                         break;
                     case "6":
-                        goOn = Helper.Continue("Are you sure you want to quit?");
+                        endGame = Helper.Continue("Are you sure you want to quit?");
                         break;
 
                 }
