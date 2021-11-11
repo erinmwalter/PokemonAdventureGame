@@ -4,9 +4,14 @@ using System.Text;
 
 namespace PokemonAdventure
 {
+    //this class houses the main game functionality
+    //player will select a trainer, and catch pokemon, train pokemon, and battle gym leaders
      class Game
     {
+        //property for the game's trainer to be housed once selected
         PokemonTrainer Trainer { get; set; }
+
+        //initializes the new game by setting trainer and starting main game play.
         public void StartNewGame()
         {
             Console.WriteLine("Your adventure begins...");
@@ -16,16 +21,24 @@ namespace PokemonAdventure
             GamePlay();
         }
 
+        //lets user choose trainer from preset list or create custom trainer
         public void SetTrainer()
         {
             Console.WriteLine("First, Choose your trainer:");
             DisplayTrainers();
             int choice = Helper.GetValidIntInput("Make your Selection: ", 0, PresetTrainers.PresetTrainerList.Count - 1);
             Trainer = PresetTrainers.PresetTrainerList[choice];
+            //if user chooses custom then overwrites preset name of "create your own" to name of their choice.
+            if(Trainer.Name == "Create Your Own")
+            {
+                string name = Helper.GetInput("Enter Trainer Name: ");
+                Trainer.Name = name;
+            }
             Console.WriteLine($"Congratulations, you selected {Trainer.Name}");
 
         }
 
+        //allows user to see list of all trainers available to pick from
         public void DisplayTrainers()
         {
             for(int i = 0; i < PresetTrainers.PresetTrainerList.Count; i++)
@@ -34,6 +47,7 @@ namespace PokemonAdventure
             }
         }
 
+        //main game play method that drives game forward. 
         public void GamePlay()
         {
             bool endGame = false;
@@ -49,6 +63,7 @@ namespace PokemonAdventure
                         break;
                     case "2":
                         //pick pokemon to train and battle rando pokemon
+                        Trainer.TrainPokemon();
                         Console.WriteLine("Pokemon Traiing functionality comming soon");
                         break;
                     case "3":
@@ -72,6 +87,7 @@ namespace PokemonAdventure
 
         }
 
+        //main game menu that allows user to choose next thing they want to do
         public void GameMenu()
         {
             Console.WriteLine($"Welcome, {Trainer.Name}. ");

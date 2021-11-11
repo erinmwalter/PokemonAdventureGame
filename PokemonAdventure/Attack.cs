@@ -22,6 +22,31 @@ namespace PokemonAdventure
             Weaknesses = PokemonDatabase.GetWeaknesses(this.Type);
         }
 
-       
+        public override string ToString()
+        {
+            string output= "";
+            output += $"Attack: {Name}, Type: {Type}\n   Super effective against: ";
+            foreach(Type type in Strengths)
+            {
+                output += $"{type}  ";
+            }
+            if(Strengths.Count == 0)
+            {
+                output += "None";
+            }
+            output += "\n   Weak against: ";
+            foreach(Type type in Weaknesses)
+            {
+                output += $"{type}  ";
+            }
+            if (Weaknesses.Count == 0)
+            {
+                output += "None";
+            }
+            output += $"\n   Accuracy: {Accuracy*100}%\n";
+            return output;
+        }
+
+
     }
 }

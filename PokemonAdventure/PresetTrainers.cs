@@ -10,7 +10,7 @@ namespace PokemonAdventure
     {
         public static List<PokemonTrainer> PresetTrainerList = InitializeTrainerList();
 
-        
+        //Initializes the above list of pokemon trainers that are built below.
         public static List<PokemonTrainer> InitializeTrainerList()
         {
             List<PokemonTrainer> trainers = new List<PokemonTrainer>();
@@ -18,9 +18,12 @@ namespace PokemonAdventure
             trainers.Add(RivalGary());
             trainers.Add(BugCatcher());
             trainers.Add(Sailor());
+            trainers.Add(CustomTrainer());
 
             return trainers;
         }
+
+        //ash ketchum the hero of pokemon!
         public static PokemonTrainer AshKetchum()
         {
             //builds a preset character that a user can choose to play
@@ -34,6 +37,7 @@ namespace PokemonAdventure
             return ash;
         }
 
+        //Gary, the jerk rival of Ash
         public static PokemonTrainer RivalGary()
         {
             PokemonTrainer rival = new PokemonTrainer("Gary");
@@ -46,6 +50,7 @@ namespace PokemonAdventure
             return rival;
         }
 
+        //random bug catcher type trainer for anyone who likes bug pokemon
         public static PokemonTrainer BugCatcher()
         {
             PokemonTrainer bugCatcher = new PokemonTrainer("Bug Catcher");
@@ -57,6 +62,7 @@ namespace PokemonAdventure
             return bugCatcher;
         }
 
+        //water loving trainer may select this Sailor trainer
         public static PokemonTrainer Sailor()
         {
             PokemonTrainer sailor = new PokemonTrainer("Sailor");
@@ -66,6 +72,21 @@ namespace PokemonAdventure
             sailor.AddPokemon(horsea, shellder, tentacool);
 
             return sailor;
+        }
+
+        //If the player wants to create their own trainer, this will
+        //generate three random pokemon for them to start out with.
+        public static PokemonTrainer CustomTrainer()
+        {
+            
+            PokemonTrainer custom = new PokemonTrainer("Create Your Own");
+            Pokemon randomA = PokemonDatabase.GetPokemon(5);
+            Pokemon randomB = PokemonDatabase.GetPokemon(5);
+            Pokemon randomC = PokemonDatabase.GetPokemon(5);
+            custom.AddPokemon(randomA, randomB, randomC);
+
+            return custom;
+
         }
 
        

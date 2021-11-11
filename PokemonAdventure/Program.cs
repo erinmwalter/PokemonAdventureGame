@@ -11,6 +11,7 @@ namespace PokemonAdventure
             bool goOn = true;
             while (goOn)
             {
+                //displays main menu, lets user choose option of where to go
                 DisplayMenu();
                 string choice = Helper.GetInput("Make your selection: ");
                 switch (choice)
@@ -33,6 +34,7 @@ namespace PokemonAdventure
 
         }
 
+        //home menu page display
         public static void DisplayMenu()
         {
             Console.WriteLine("\nWhat would you like to do?");

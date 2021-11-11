@@ -2,16 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 
+//this class contains a number of helper methods to help with getting and validating method as well as
+//a couple other methods that are commonly used throughout the program
+
 namespace PokemonAdventure
 {
     class Helper
     {
+        //returns a string of input to user. no validation included
         public static string GetInput(string prompt)
         {
             Console.Write(prompt);
             return Console.ReadLine();
         }
 
+        //allows user to enter y or no and returns a bool according to user's answer
         public static bool Continue(string prompt)
         {
             Console.Write(prompt);
@@ -31,6 +36,7 @@ namespace PokemonAdventure
             }
         }
 
+        //generates a random number betwen [min, max) . 
         public static int GenerateRandom(int min, int max)
         {
             Random rand = new Random();
@@ -39,6 +45,8 @@ namespace PokemonAdventure
             return randomNum;
         }
 
+        //gets int value as well as validates that the input is good by taking in a min and max value
+        //for the range that the int can be in
         public static int GetValidIntInput(string prompt, int min, int max)
         {
             int value;
@@ -74,6 +82,8 @@ namespace PokemonAdventure
             return value;
         }
 
+        //simple pause method to pause the UI during the game
+        //user can pass in whatever method and will need user to press any key to continue game forward.
         public static void Pause(string message)
         {
             Console.WriteLine(message);

@@ -11,10 +11,13 @@ namespace PokemonAdventure
 
         public int TrainerLevel => GetAverageLevel();
 
+        //2 options for constructors for pokemon trainer class, one with just name
+        //one with a pokedex of pokemon loaded in.
         public PokemonTrainer(string Name)
         {
             this.Name = Name;
         }
+
 
         public PokemonTrainer(string Name, params Pokemon[] Pokedex)
         {
@@ -22,11 +25,23 @@ namespace PokemonAdventure
             this.Pokedex = Pokedex.ToList();
         }
 
+        //method to add a single pokemon to pokedex
         public void AddPokemon(Pokemon pokemon)
         {
             Pokedex.Add(pokemon);
         }
 
+        //overloaded add pokemon to add multiple pokemon to pokedex
+        public void AddPokemon(params Pokemon[] pokemon)
+        {
+            foreach (Pokemon p in pokemon)
+            {
+                Pokedex.Add(p);
+            }
+        }
+
+        //sets average level of trainer by looking at all levels of current pokemon
+        //and taking the average of those. used when determining levels of wild pokemon
         public int GetAverageLevel()
         {
             int sum = 0;
@@ -44,7 +59,7 @@ namespace PokemonAdventure
             }
         }
        
-
+        //method for catching new pokemon from wild
         public void CatchNewPokemon()
         {
             Pokemon wildPokemon = PokemonDatabase.GetPokemon(TrainerLevel);
@@ -68,6 +83,8 @@ namespace PokemonAdventure
             }
         }
 
+        //called while trying to catch pokemon, user currently has 1 in 3 chance to catch
+        //pokemon, otherwise it's recursively called to try again, or the pokemon flees
         public bool TryToCatch(Pokemon pokemon)
         {
             int randNumber = Helper.GenerateRandom(1, 4);
@@ -89,14 +106,8 @@ namespace PokemonAdventure
             }
         }
      
-        public void AddPokemon(params Pokemon[] pokemon)
-        {
-            foreach (Pokemon p in pokemon)
-            {
-                Pokedex.Add(p);
-            }
-        }
-
+       
+        //method to display all pokemon in trainer's current pokedex
         public void ViewPokedex()
         {
             Console.WriteLine($"{Name}'s Pokedex: ");
@@ -106,6 +117,7 @@ namespace PokemonAdventure
             }
         }
 
+        //method to delete pokemon from pokedex.
         public void ReleasePokemon()
         {
             ViewPokedex();
@@ -114,6 +126,22 @@ namespace PokemonAdventure
             Pokedex.Remove(toRemove);
             Console.WriteLine($"Successfully released {toRemove.Name} to the wild");
 
+        }
+
+        //method that will let users choose a pokemon from their pokedex
+        //and train or battle with that pokemon
+        public int ChoosePokemon()
+        {
+            ViewPokedex();
+            int choice = Helper.GetValidIntInput("Choose a pokemon: ", 1, Pokedex.Count);
+            return choice;
+        }
+
+        //method will take users to main pokemon menu to train, teach attacks, etc.
+        public void TrainPokemon()
+        {
+            int index = ChoosePokemon();
+            Pokedex[index-1].PokemonMenu();
         }
     }
 }

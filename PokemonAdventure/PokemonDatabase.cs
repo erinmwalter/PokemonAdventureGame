@@ -4,6 +4,7 @@ namespace PokemonAdventure
 {
     class PokemonDatabase
     {
+        //gets a random pokemon from the database and returns it
         public static Pokemon GetPokemon(int level)
         {
             List<Pokemon> wildPokemonDatabase = DatabaseBuilder();
@@ -16,6 +17,9 @@ namespace PokemonAdventure
             return chosen;
         }
 
+        // database of pokemon.
+        // all are defaulted to level 5, however when a random pokemon is generated, 
+        //level gets updated to trainer's level.
         public static List<Pokemon> DatabaseBuilder()
         {
             List<Pokemon> pokemonDatabase = new List<Pokemon>();
@@ -43,7 +47,6 @@ namespace PokemonAdventure
             pokemonDatabase.Add(new Pokemon("Drowzee", Type.Psychic, 5));
             pokemonDatabase.Add(new Pokemon("Geodude", Type.Rock, 5));
             pokemonDatabase.Add(new Pokemon("Onix", Type.Rock, 5));
-            pokemonDatabase.Add(new Pokemon("Onix", Type.Rock, 5));
             pokemonDatabase.Add(new Pokemon("Squirtle", Type.Water, 5));
             pokemonDatabase.Add(new Pokemon("Poliwag", Type.Water, 5));
 
@@ -51,6 +54,9 @@ namespace PokemonAdventure
 
         }
 
+        //List of what each pokemon attack type is weak against. Will be used
+        //when battling other pokemon to determine attack potency 
+        //if attack is weak against type, strength will be reduced to .5 of its strength.
         public static List<Type> GetWeaknesses(Type type)
         {
             List<Type> attackWeaknesses;
@@ -104,6 +110,9 @@ namespace PokemonAdventure
 
         }
 
+        //List of what each pokemon attack type is strong against. Will be used
+        //when battling other pokemon to determine attack potency 
+        //if pokemon is strong against a type, attack will be 2x. 
         public static List<Type> GetStrengths(Type type)
         {
             List<Type> attackStrengths;

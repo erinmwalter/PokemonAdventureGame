@@ -21,12 +21,79 @@ namespace PokemonAdventure
             Attacks.Add(new Attack("Tackle", Type.Normal));
         }
 
-        public void SetAttacks(List<Attack> attacks)
+        //gets one or more attacks and adds to pokemon's list of attacks
+        public void SetAttacks(params Attack[] attacks)
         {
-            Attacks = attacks;
+            foreach (Attack attack in attacks)
+            {
+                if (attack.Type == Type || attack.Type == Type.Normal)
+                {
+                    Attacks.Add(attack);
+                    Console.WriteLine($"Taught {Name} {attack}!");
+                }
+                else
+                {
+                    Console.WriteLine($"Unable to teach {Name} {attack.Name}. Attack type must be {Type} or Normal type.");
+                }
+            }
         }
 
+        //main driver of pokemon menu that will allow users to choose to train, or upgrade pokemon
+        public void PokemonMenu()
+        {
+            bool goOn = true;
+            while (goOn)
+            {
+                DisplayMenu();
+                string choice = Helper.GetInput("Make a selection: ");
+                switch (choice)
+                {
+                    case "1":
+                        DisplayAllStats();
+                        break;
+                    case "2":
+                        Console.WriteLine("Battle functionality will be available in future.");
+                        break;
+                    case "3":
+                        Attack newAttack = GetAttack();
+                        SetAttacks(newAttack);
+                        break;
+                    case "4":
+                        goOn = false;
+                        Console.WriteLine("Returning to main menu.");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid selection, try again...");
+                        break;
+                }
+            }
+        }
 
+        public Attack GetAttack()
+        {
+            string name = Helper.GetInput("Enter name of attack: ");
+            Attack newAttack = new Attack(name, Type);
+            return newAttack;
+        }
+
+        public void DisplayMenu()
+        {
+            Console.WriteLine($"You have selected {Name}");
+            Console.WriteLine("1. See Current stats");
+            Console.WriteLine("2. Battle wild pokemon");
+            Console.WriteLine("3. Teach new Attack");
+            Console.WriteLine("4. Return to main menu");
+        }
+
+        public void DisplayAllStats()
+        {
+            Console.WriteLine(ToString());
+            foreach(Attack attack in Attacks)
+            {
+                Console.WriteLine(attack);
+            }
+        }
+        //override of tostring for displaying pokemon information
         public override string ToString()
         {
             return $"{Name}, Type: {Type}, Level: {Level}, HP:{HP}, EXP needed to Level up: {ExperienceNeeded}";

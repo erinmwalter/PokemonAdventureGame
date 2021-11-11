@@ -4,6 +4,7 @@ using System.Text;
 
 namespace PokemonAdventure
 {
+    //enum for all pokemon types and attack types
     public enum Type
     {
         Normal,
