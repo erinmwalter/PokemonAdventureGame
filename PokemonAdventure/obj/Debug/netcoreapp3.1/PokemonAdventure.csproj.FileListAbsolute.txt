@@ -1,0 +1,14 @@
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.csproj.AssemblyReference.cache
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.AssemblyInfoInputs.cache
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.AssemblyInfo.cs
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.csproj.CoreCompileInputs.cache
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\bin\Debug\netcoreapp3.1\PokemonAdventure.exe
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\bin\Debug\netcoreapp3.1\PokemonAdventure.deps.json
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\bin\Debug\netcoreapp3.1\PokemonAdventure.runtimeconfig.json
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\bin\Debug\netcoreapp3.1\PokemonAdventure.runtimeconfig.dev.json
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\bin\Debug\netcoreapp3.1\PokemonAdventure.dll
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\bin\Debug\netcoreapp3.1\PokemonAdventure.pdb
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.dll
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.pdb
+C:\Users\ewalter\source\repos\PokemonAdventure\PokemonAdventure\obj\Debug\netcoreapp3.1\PokemonAdventure.genruntimeconfig.cache
