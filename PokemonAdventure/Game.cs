@@ -62,9 +62,8 @@ namespace PokemonAdventure
                         Trainer.CatchNewPokemon();
                         break;
                     case "2":
-                        //pick pokemon to train and battle rando pokemon
-                        Trainer.TrainPokemon();
-                        Console.WriteLine("Pokemon Traiing functionality comming soon");
+                        //pick pokemon to view and add attacks and see health/status
+                        Trainer.ViewPokemonInfo();
                         break;
                     case "3":
                         Trainer.ViewPokedex();
@@ -74,11 +73,19 @@ namespace PokemonAdventure
                         Trainer.ReleasePokemon();
                         break;
                     case "5":
+                        AutomatedPokemonTrainer opponent = PresetTrainers.AutoSailor();
+                        PokemonArena gymBattle = new PokemonArena(Trainer, opponent);
+                        gymBattle.GoToBattle();
+                        break;
+                    case "6":
                         //gym battle
                         Console.WriteLine("Gym Battle Functionality Coming Soon.");
                         break;
-                    case "6":
+                    case "7":
                         endGame = Helper.Continue("Are you sure you want to quit?");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid selection, try again.");
                         break;
 
                 }
@@ -92,11 +99,12 @@ namespace PokemonAdventure
         {
             Console.WriteLine($"Welcome, {Trainer.Name}. ");
             Console.WriteLine("1. Catch Wild Pokemon");
-            Console.WriteLine("2. Train Pokemon");
+            Console.WriteLine("2. View Individual Pokemon--Add attacks, see pokemon status");
             Console.WriteLine("3. View All Pokemon");
             Console.WriteLine("4. Release Pokemon");
-            Console.WriteLine("5. Battle Next Gym Leader");
-            Console.WriteLine("6. Quit Game --Warning Save Game functionality not available yet.");
+            Console.WriteLine("5. Battle Random Trainer");
+            Console.WriteLine("6. Battle Next Gym Leader");
+            Console.WriteLine("7. Quit Game --Warning Save Game functionality not available yet.");
         }
 
 

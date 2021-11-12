@@ -9,8 +9,8 @@ namespace PokemonAdventure
         public string Name { get; set; } 
         public Type Type { get; set; }
         public int Level { get; set; }
-        public int ExperienceNeeded => Level * 100;
-        public int HP => Level * 10;
+        public int ExperienceNeeded { get; set; }
+        public int HP { get; set; }
         public List<Attack> Attacks { get; set; } = new List<Attack>();
 
         public Pokemon(string Name, Type Type, int Level)
@@ -18,18 +18,21 @@ namespace PokemonAdventure
             this.Name = Name;
             this.Type = Type;
             this.Level = Level;
+            HP = Level * 10;
+            ExperienceNeeded = Level * 100;
             Attacks.Add(new Attack("Tackle", Type.Normal));
         }
 
         //gets one or more attacks and adds to pokemon's list of attacks
-        public void SetAttacks(params Attack[] attacks)
+        //used in child class as override to auto set attack list for opponent
+        public virtual void SetAttacks(params Attack[] attacks)
         {
             foreach (Attack attack in attacks)
             {
                 if (attack.Type == Type || attack.Type == Type.Normal)
                 {
                     Attacks.Add(attack);
-                    Console.WriteLine($"Taught {Name} {attack}!");
+                    Console.WriteLine($"Taught {Name} {attack.Name}!");
                 }
                 else
                 {
@@ -38,6 +41,7 @@ namespace PokemonAdventure
             }
         }
 
+        
         //main driver of pokemon menu that will allow users to choose to train, or upgrade pokemon
         public void PokemonMenu()
         {
@@ -55,7 +59,7 @@ namespace PokemonAdventure
                         Console.WriteLine("Battle functionality will be available in future.");
                         break;
                     case "3":
-                        Attack newAttack = GetAttack();
+                        Attack newAttack = SetNewAttack();
                         SetAttacks(newAttack);
                         break;
                     case "4":
@@ -69,13 +73,16 @@ namespace PokemonAdventure
             }
         }
 
-        public Attack GetAttack()
+        //gets name of attack from user and auto-adds type matching pokemon's type
+        // to Attacks list
+        public Attack SetNewAttack()
         {
             string name = Helper.GetInput("Enter name of attack: ");
             Attack newAttack = new Attack(name, Type);
             return newAttack;
         }
 
+        //displays main menu for individual pokemon functionality
         public void DisplayMenu()
         {
             Console.WriteLine($"You have selected {Name}");
@@ -85,6 +92,7 @@ namespace PokemonAdventure
             Console.WriteLine("4. Return to main menu");
         }
 
+        //displays all stats and attacks for each pokemon
         public void DisplayAllStats()
         {
             Console.WriteLine(ToString());
@@ -92,6 +100,16 @@ namespace PokemonAdventure
             {
                 Console.WriteLine(attack);
             }
+        }
+
+        public int CalculateDamage(Attack attack, Type opponentType)
+        {
+            int damage = Level / 5;
+            double effectiveness = attack.GetEffectiveness(opponentType);
+            damage = (int)(effectiveness * damage);
+            return damage;
+            //just telling it that the base damage is 1/5 of the trainer's level 
+            
         }
         //override of tostring for displaying pokemon information
         public override string ToString()

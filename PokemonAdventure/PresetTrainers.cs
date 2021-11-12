@@ -89,7 +89,17 @@ namespace PokemonAdventure
 
         }
 
-       
+        //water loving trainer may select this Sailor trainer
+        public static AutomatedPokemonTrainer AutoSailor()
+        {
+            AutomatedPokemonTrainer sailor = new AutomatedPokemonTrainer("Sailor");
+            Pokemon horsea = new Pokemon("Horsea", Type.Water, 5);
+            Pokemon shellder = new Pokemon("Shellder", Type.Water, 5);
+            Pokemon tentacool = new Pokemon("Tentacool", Type.Water, 5);
+            sailor.AddPokemon(horsea, shellder, tentacool);
+
+            return sailor;
+        }
 
     }
 }
